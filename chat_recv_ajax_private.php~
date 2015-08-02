@@ -1,0 +1,32 @@
+<?php
+	include "check.php";
+     require_once('dbconnect.php');
+
+     db_connect();
+     session_start();
+     $sender=$_SESSION['usrname'];
+     $receiver=$_GET["name"];
+     
+     $sql=" SELECT chatdate, msg, receiver from $receiver where receiver='$sender' union select chatdate, msg, receiver from $sender where receiver='$receiver' order by chatdate";
+     //$sql = "SELECT *, date_format(chatdate,'%d-%m-%Y %r') as cdt from (" .$sql .") order by chatdate desc limit 200";
+     $sql = "SELECT * FROM (" . $sql . ") as ch order by chatdate limit 200";
+     $result = mysql_query($sql) or die('Please enter username correctly');
+     
+     // Update Row Information
+     $msg="<table border='0' style='font-size: 10pt; color: blue; font-family: verdana, arial;'>";
+     while ($line = mysql_fetch_array($result, MYSQL_ASSOC))
+     {
+           $msg = $msg . "<tr><td>" . $line["chatdate"] . "&nbsp;</td>" .
+                "<td>" . "Received By ".$line["receiver"] . ":&nbsp;</td>" .
+                "<td>" . $line["msg"] . "</td></tr>";
+     }
+     $msg=$msg . "</table>";
+     
+     echo $msg;
+
+?>
+
+
+
+
+
