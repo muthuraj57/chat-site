@@ -1,6 +1,0 @@
-<?php
-session_start();
-echo $_SESSION['usrname'];
-if(!isset($_SESSION['usrname']))
- header('location:index.php');
-?>

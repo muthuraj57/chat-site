@@ -1,9 +1,0 @@
-create table reg(fname varchar(20), lname varchar(20), gender varchar(6), dob date, email varchar(30), usrname varchar(16), pswrd varchar(60));
-
-alter table reg add(ontag int);   	-> on mysql
-update reg set ontag=0;			->on mysql
-
-add 0 on isert query in reg.php
-update reg set ontag=1 where usrname='$usrname'	->on index.php
-update reg set ontag=0 where usrname='$usrname'	->on logout.php
-
