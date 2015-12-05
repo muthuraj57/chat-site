@@ -34,13 +34,13 @@
 }
 ?>
 <html>
- <title>Gossip/Login Page</title>
+ <title>Chat/Login Page</title>
 	<link rel="icon" href="images/goss.ico" type="image/x-icon">
-<body background='images/bg.jpg'> 
+<body bgcolor="#800033"> 
  <form action="index.php" method="POST">
  <a href="reg.php"><img src='images/reg.jpeg' align=right width='100'></a>
  <!--<b align=left>New user Register <a href="reg.php">here</a></b>-->
- <center><b style="font-size:30px;color:red">Gossip with mates</b></center><br><br><br><br>
+ <center><b style="font-size:30px;color:red">Chat with mates</b></center><br><br><br><br>
  <center><table>
  <tr><th style="color:green">Username</th><td><input type="text" name="usr" value="<?=$_POST['usr']?>" autofocus="autofocus"><font color=red><?=$ckname?></font></td></tr>
  <tr><th style="color:green">Password</th><td><input type="password" name="pswrd" value="<?=$_POST['pswrd']?>"><font color=red><?=$ckpswrd?></font></td></tr>

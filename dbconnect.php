@@ -6,9 +6,9 @@ function db_connect()
 
   date_default_timezone_set("Asia/Calcutta");
 
-  $link = mysql_connect("mysql14.000webhost.com", "a4866257_muthu","Muthu_Sattur")
+  $link = mysql_connect("localhost", "root","")
             or die('Could not connect: ' . mysql_error());
-  mysql_select_db("a4866257_chat") or die('Could not select database');
+  mysql_select_db("chat") or die('Could not select database');
   return true;
 }
 

@@ -5,7 +5,7 @@
 <h3 style="text-align:right"><a href="logout.php" style="text-decoration:none">Logout</a></h3>
 <h3 style="text-align:right"><a href="about.php" style="text-decoration:none">About us</a></h3>
 
-<center><h1><a href="private.php" style="text-decoration:none">Private Chat</a></h1></center>
+<center><h1><a href="chat-select.php" style="text-decoration:none">Private Chat</a></h1></center>
 <br><br><br><br><br>
 <center><h1><a href="public.php" style="text-decoration:none">Public Chat</a></h1></center>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-    <title>Gossip</title>
+    <title>Private Chat</title>
 	<link rel="icon" href="goss.ico" type="image/x-icon">
 <?php
 include("check.php");
@@ -10,66 +10,14 @@ session_start();
    
 <script type="text/javascript">
 
-var t=setInterval(function chat(){get_chat_msg()},5000);
+var t=setInterval(function chat(){get_chat_msg()},2000);
 
-//show hint
-/*function showHint(str) {
-  if (str.length==0) { 
-    document.getElementById("txtHint").innerHTML="";
-    return;
-  }
-  var xmlhttp=new XMLHttpRequest();
-  xmlhttp.onreadystatechange=function() {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-      document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
-    }
-  }
-  xmlhttp.open("GET","gethint.php?q="+str,true);
-  xmlhttp.send();
-}*/
 //
 // General Ajax Call
 //
       
 var oxmlHttp;
 var oxmlHttpSend;
-//to get online users
-/*function get_online_users()
-{
-	
-	var url="online_users.php";
-    if(typeof XMLHttpRequest != "undefined")
-    {
-        oxmlHttp = new XMLHttpRequest();
-    }
-    else if (window.ActiveXObject)
-    {
-       oxmlHttp = new ActiveXObject("Microsoft.XMLHttp");
-    }
-    if(oxmlHttp == null)
-    {
-        alert("Browser does not support XML Http Request");
-       return;
-    }
-    
-    oxmlHttp.onreadystatechange = get_online_users_result;
-    oxmlHttp.open("GET",url,true);
-    oxmlHttp.send(null);
-}
-
-function get_online_users_result()
-{
-    if(oxmlHttp.readyState==4 || oxmlHttp.readyState=="complete")
-    {
-        if (document.getElementById("DIV_ONLINE") != null)
-        {
-            document.getElementById("DIV_ONLINE").innerHTML =  oxmlHttp.responseText;
-            oxmlHttp = null;
-        }
-        var scrollDiv = document.getElementById("DIV_ONLINE");
-        scrollDiv.scrollTop = scrollDiv.scrollHeight;
-    }
-}*/
 
 //to show suggestions
 function showResult(str) {
@@ -202,7 +150,14 @@ function set_chat_msg()
                         <tr>
                             <td style="width: 100px">
                                 Receiver Name:</td>
-                            <td style="width: 100px"><input id="txtname" style="width: 150px" type="text" name="name" maxlength="15" autofocus="autofocus" onkeyup="showResult(this.value)"/><div id="livesearch"></div></td>
+                            <td style="width: 100px"><input id="txtname" style="width: 150px" type="text" name="name" maxlength="15" 
+							<?php
+							if(isset($_GET['receiver']))
+								echo "value=".$_GET['receiver'];
+							else
+								echo "autofocus='autofocus'";
+							?>
+							 onkeyup="showResult(this.value)"/><div id="livesearch"></div></td>
 				
                         </tr>
                     </table>
@@ -212,16 +167,9 @@ function set_chat_msg()
                 <td style="vertical-align: middle;" valign="middle" colspan="2">
                     <div style="width: 600px; height: 400px; border-right: darkslategray thin solid; border-top: darkslategray thin solid; font-size: 10pt; border-left: darkslategray thin solid; border-bottom: darkslategray thin solid; font-family: verdana, arial; overflow:scroll; text-align: left;" id="DIV_CHAT">
                     </div>
-                <!--</td>
-		<td style="vertical-align: middle;" valign="middle" colspan="2">
-                    <div style="width: 200px; height: 400px; border-right: darkslategray thin solid; border-top: darkslategray thin solid; font-size: 10pt; border-left: darkslategray thin solid; border-bottom: darkslategray thin solid; font-family: verdana, arial; overflow:scroll; text-align: left;" id="DIV_ONLINE">
-                    </div>
-                </td>-->
             </tr>	
             <tr>
                 <td style="width: 310px">
-                    <!--<input id="txtmsg" style="width: 350px" type="text" name="msg" /></td>
-                -->
 			<b>Message:</b><input id="txtmsg" style="width: 350px" type="text" name="msg" onPaste="" onkeydown="if (event.keyCode == 13) {set_chat_msg();return false;}" /></td>
 			<td style="width: 85px">
                     <input id="Submit2" style="font-family: verdana, arial" type="button" value="Send" onclick="set_chat_msg()"/></td>
