@@ -99,7 +99,7 @@ function get_chat_list_result()
             </tr>
 			<tr>
                 <td style="width: 310px">                  
-			<b>New Chat</b><input id="newchat" style="width: 350px" type="text" name="msg" onPaste="" onkeydown="if (event.keyCode == 13) {start_chat();return false;}" /></td>
+			<b>New Chat</b><input id="newchat" style="width: 350px" type="text" name="msg" autofocus="autofocus" onPaste="" onkeydown="if (event.keyCode == 13) {start_chat();return false;}" /></td>
 			<td style="width: 85px">
                     <input id="Submit2" style="font-family: verdana, arial" type="button" value="Start Chat" onclick="start_chat()"/></td>
             </tr>

@@ -170,7 +170,11 @@ function set_chat_msg()
             </tr>	
             <tr>
                 <td style="width: 310px">
-			<b>Message:</b><input id="txtmsg" style="width: 350px" type="text" name="msg" onPaste="" onkeydown="if (event.keyCode == 13) {set_chat_msg();return false;}" /></td>
+			<b>Message:</b><input id="txtmsg" style="width: 350px" type="text" name="msg" onPaste="" onkeydown="if (event.keyCode == 13) {set_chat_msg();return false;}" 
+			<?php
+							if(isset($_GET['receiver']))
+								echo "autofocus='autofocus'";
+							?>/></td>
 			<td style="width: 85px">
                     <input id="Submit2" style="font-family: verdana, arial" type="button" value="Send" onclick="set_chat_msg()"/></td>
             </tr>
