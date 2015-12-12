@@ -16,17 +16,26 @@
      db_connect();
  $usrname=$_POST['usr'];
  $pswrd=$_POST['pswrd'];
+ 
  $pd=mysql_query("select password('$pswrd')");
  $pq=mysql_fetch_array($pd);
- $qry=mysql_query("select pswrd from reg where usrname='$usrname'");
+ 
+ if (filter_var($usrname, FILTER_VALIDATE_EMAIL)){
+	  $qry = mysql_query("select pswrd from reg where email='$usrname'");
+	  $res = mysql_query("select usrname from reg where email = '$usrname'");
+	  $res = mysql_fetch_array($res);
+	  $usrname = $res[0];
+ }
+ else
+	$qry=mysql_query("select pswrd from reg where usrname='$usrname'");
  $fetch=mysql_fetch_array($qry);
+ 
  if(strcmp($pq[0],$fetch[0])=='0')
 {
  session_start();
  $_SESSION['usrname']=$usrname;
  mysql_query("update reg set ontag=1 where usrname='$usrname'");
  header('location:select.php');  
-//echo "<meta http-equiv='refresh' content='0;URL=home.php'>";
 }
  else
   echo "<font color=red>Login error:Check your details.</font>";
@@ -34,7 +43,7 @@
 }
 ?>
 <html>
- <title>Chat/Login Page</title>
+ <title>Chat|Login Page</title>
 	<link rel="icon" href="images/goss.ico" type="image/x-icon">
 <body bgcolor="#800033"> 
  <form action="index.php" method="POST">
